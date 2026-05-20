@@ -28,6 +28,7 @@ export async function updateProfile(formData: FormData) {
 export async function uploadAvatar(formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) return { error: "Silakan login terlebih dahulu." };
+  const userId = session.user.id;
 
   const file = formData.get("file") as File;
   if (!file) return { error: "Tidak ada file gambar yang dipilih." };
@@ -44,7 +45,7 @@ export async function uploadAvatar(formData: FormData) {
         } else {
           try {
             await prisma.user.update({
-              where: { id: session.user.id },
+              where: { id: userId },
               data: { image: result.secure_url },
             });
             revalidatePath("/profile");
