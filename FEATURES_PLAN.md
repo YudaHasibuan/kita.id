@@ -60,10 +60,10 @@
 ## 4. 💬 Chat & Real-Time Messaging
 > 🛠 Tool: **Supabase Realtime** (GRATIS, bawaan Supabase) — ~~Pusher~~ ❌ TIDAK DIPAKAI
 
-- [ ] **Inbox Chat** — Daftar percakapan terakhir + badge jumlah pesan belum dibaca
-- [ ] **Direct Message (DM)** — Fitur chat 1 on 1 antar pengguna
-- [ ] **Real-Time Pesan** — Menggunakan **Supabase Realtime Channels** (WebSocket bawaan, GRATIS)
-- [ ] **Indikator Online** — Tampilkan status "online" pengguna via Supabase Presence
+- [x] **Inbox Chat** — Daftar percakapan terakhir + badge jumlah pesan belum dibaca
+- [x] **Direct Message (DM)** — Fitur chat 1 on 1 antar pengguna
+- [x] **Real-Time Pesan** — Menggunakan **Supabase Realtime Channels** (WebSocket bawaan, GRATIS)
+- [x] **Indikator Online** — Tampilkan status "online" pengguna via Supabase Presence
 
 ---
 
@@ -110,7 +110,7 @@
 - [x] **Prisma Migrate** — Jalankan migrasi database otomatis
 - [x] **Server Actions Next.js** — Semua operasi CRUD menggunakan Server Actions (App Router)
 - [x] **Setup Cloudinary** — Buat akun di [cloudinary.com](https://cloudinary.com) (free tier 25GB, tanpa kartu kredit)
-- [ ] **Deploy ke Vercel** — Push ke GitHub → auto-deploy via Vercel (Hobby Plan, GRATIS)
+- [x] **Deploy ke Vercel** — Push ke GitHub → auto-deploy via Vercel (Hobby Plan, GRATIS)
 
 ---
 
