@@ -11,7 +11,7 @@
 | **Database** | Supabase (PostgreSQL) | ✅ GRATIS (Free Tier) |
 | **ORM** | Prisma ORM | ✅ GRATIS (Open Source) |
 | **Autentikasi** | Auth.js v5 (NextAuth) | ✅ GRATIS (Open Source) |
-| **OAuth Provider** | Google + GitHub OAuth | ✅ GRATIS |
+| **OAuth Provider** | Google OAuth | ✅ GRATIS |
 | **File/Gambar Upload** | Cloudinary | ✅ GRATIS (25GB Free Tier) |
 | **Real-time / Chat** | Supabase Realtime | ✅ GRATIS (bawaan Supabase) |
 | **Notifikasi Push** | Custom DB Polling | ✅ GRATIS (tanpa service pihak ketiga) |
@@ -25,8 +25,7 @@
 > 🛠 Tool: **Auth.js (NextAuth v5)** + **Supabase DB** — GRATIS ✅
 
 - [x] **Registrasi & Login Email/Password** — Auth.js Credentials Provider
-- [ ] **Login via Google** — Google OAuth 2.0 (gratis, daftar di Google Cloud Console)
-- [ ] **Login via GitHub** — GitHub OAuth App (gratis, daftar di GitHub Developer Settings)
+- [x] **Login via Google** — Google OAuth 2.0 (gratis, daftar di Google Cloud Console)
 - [x] **Manajemen Sesi** — Proteksi rute dengan `middleware.ts` Next.js
 - [x] **Halaman Profil Dinamis** — Tampilkan data user dari database
 - [x] **Edit Profil** — Form update nama, handle, bio, dan avatar
@@ -124,7 +123,6 @@
 | Cloudinary | **$0 / bulan** | 25GB Storage + 25GB Bandwidth |
 | Vercel | **$0 / bulan** | 100GB Bandwidth, unlimited projects |
 | Google OAuth | **$0** | Gratis tanpa limit |
-| GitHub OAuth | **$0** | Gratis tanpa limit |
 | **TOTAL** | **🎉 $0 / bulan** | — |
 
 ---
