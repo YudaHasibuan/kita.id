@@ -86,8 +86,8 @@ export default function ChatWindow({
       });
 
     return () => {
-      supabase.removeChannel(messageChannel);
-      supabase.removeChannel(presenceChannel);
+      supabase?.removeChannel(messageChannel);
+      supabase?.removeChannel(presenceChannel);
     };
   }, [conversationId, currentUser.id, chatName, chatImage]);
 
