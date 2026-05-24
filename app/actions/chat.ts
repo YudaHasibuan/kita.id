@@ -3,6 +3,7 @@
 import prisma from "@/lib/db";
 import { auth } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 // Mengambil daftar percakapan pengguna (Inbox)
 export async function getConversations() {
@@ -155,5 +156,16 @@ export async function sendMessage(conversationId: string, content: string) {
     return { message };
   } catch (error: any) {
     return { error: error.message };
+  }
+}
+
+// Action form untuk memulai chat
+export async function startChatAction(formData: FormData) {
+  const otherUserId = formData.get("userId") as string;
+  if (!otherUserId) return;
+
+  const res = await findOrCreateDirectConversation(otherUserId);
+  if (res.conversationId) {
+    redirect(`/chat/${res.conversationId}`);
   }
 }

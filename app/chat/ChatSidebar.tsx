@@ -28,29 +28,25 @@ export default function ChatSidebar({ conversations, currentUser }: { conversati
           <Link
             key={conv.id}
             href={`/chat/${conv.id}`}
-            className={`flex items-center p-4 border-b border-white/5 hover:bg-white/10 transition-colors ${
-              isActive ? "bg-white/10" : ""
-            }`}
+            className={`chat-item ${isActive ? "active" : ""}`}
           >
-            <div className="relative w-12 h-12 rounded-full overflow-hidden bg-gray-700 mr-4 flex-shrink-0">
+            <div className="chat-item-avatar">
               {chatImage ? (
-                <img src={chatImage} alt={chatName} className="object-cover w-full h-full" />
+                <img src={chatImage} alt={chatName} className="chat-item-avatar" />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-white/50 text-xl font-bold">
-                  {chatName.charAt(0)}
-                </div>
+                chatName.charAt(0).toUpperCase()
               )}
             </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex justify-between items-baseline mb-1">
-                <h3 className="text-white font-semibold truncate">{chatName}</h3>
+            <div className="chat-item-content">
+              <div className="chat-item-header">
+                <h3>{chatName}</h3>
                 {lastMessage && (
-                  <span className="text-xs text-white/40 flex-shrink-0 ml-2">
+                  <span>
                     {new Date(lastMessage.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 )}
               </div>
-              <p className="text-sm text-white/60 truncate">
+              <p className="chat-item-text">
                 {lastMessage ? lastMessage.content : "Belum ada pesan."}
               </p>
             </div>

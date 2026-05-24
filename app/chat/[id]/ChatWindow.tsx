@@ -119,55 +119,45 @@ export default function ChatWindow({
   return (
     <div className="flex flex-col h-full">
       {/* Header Chat */}
-      <div className="p-4 border-b border-white/10 flex items-center bg-black/30 backdrop-blur-md">
-        <div className="relative w-10 h-10 rounded-full overflow-hidden bg-gray-700 mr-3 flex-shrink-0">
+      <div className="chat-header">
+        <div className="chat-item-avatar">
           {chatImage ? (
-            <img src={chatImage} alt={chatName} className="object-cover w-full h-full" />
+            <img src={chatImage} alt={chatName} className="chat-item-avatar" />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-white/50 text-lg font-bold">
-              {chatName.charAt(0)}
-            </div>
+            chatName.charAt(0).toUpperCase()
           )}
         </div>
-        <div>
-          <h3 className="text-white font-semibold">{chatName}</h3>
+        <div className="chat-header-info">
+          <h3>{chatName}</h3>
           {isOnline ? (
-            <div className="flex items-center text-xs text-green-400">
-              <span className="w-2 h-2 rounded-full bg-green-500 mr-1 animate-pulse"></span>
+            <div className="chat-online">
+              <span className="chat-online-dot"></span>
               Online
             </div>
           ) : (
-            <div className="text-xs text-white/40">Offline</div>
+            <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '4px' }}>Offline</div>
           )}
         </div>
       </div>
 
       {/* Area Pesan */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="chat-messages">
         {messages.map((msg, idx) => {
           const isMe = msg.senderId === currentUser.id;
           return (
-            <div key={msg.id || idx} className={`flex ${isMe ? "justify-end" : "justify-start"}`}>
-              <div className={`flex max-w-[70%] ${isMe ? "flex-row-reverse" : "flex-row"} items-end`}>
-                {!isMe && (
-                  <img 
-                    src={msg.sender?.image || `https://ui-avatars.com/api/?name=${msg.sender?.name}&background=random`} 
-                    alt="avatar" 
-                    className="w-6 h-6 rounded-full mb-1 mx-2"
-                  />
-                )}
-                <div 
-                  className={`p-3 rounded-2xl ${
-                    isMe 
-                      ? "bg-blue-600 text-white rounded-br-none" 
-                      : "bg-white/10 text-white rounded-bl-none"
-                  }`}
-                >
-                  <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
-                  <div className={`text-[10px] mt-1 ${isMe ? "text-blue-200 text-right" : "text-white/40 text-left"}`}>
-                    {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                  </div>
-                </div>
+            <div key={msg.id || idx} className={`message-row ${isMe ? "me" : "them"}`}>
+              {!isMe && (
+                <img 
+                  src={msg.sender?.image || `https://ui-avatars.com/api/?name=${msg.sender?.name}&background=random`} 
+                  alt="avatar" 
+                  className="message-avatar"
+                />
+              )}
+              <div className="message-bubble">
+                {msg.content}
+                <span className="message-time">
+                  {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                </span>
               </div>
             </div>
           );
@@ -176,21 +166,21 @@ export default function ChatWindow({
       </div>
 
       {/* Input Chat */}
-      <div className="p-4 bg-black/30 border-t border-white/10">
-        <form onSubmit={handleSend} className="flex items-center space-x-2">
+      <div className="chat-input-area">
+        <form onSubmit={handleSend} className="chat-input-form">
           <input
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
-            placeholder="Ketik pesan..."
-            className="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-white placeholder-white/30 focus:outline-none focus:border-blue-500 transition-colors"
+            placeholder="Tulis pesan..."
+            className="chat-input-field"
           />
           <button 
             type="submit"
             disabled={!newMessage.trim()}
-            className="p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:hover:bg-blue-600 transition-colors"
+            className="chat-send-btn"
           >
-            <Send size={20} />
+            <Send size={20} className={newMessage.trim() ? "translate-x-[2px]" : ""} />
           </button>
         </form>
       </div>

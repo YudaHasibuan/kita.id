@@ -59,3 +59,52 @@ export async function uploadAvatar(formData: FormData) {
     uploadStream.end(buffer);
   });
 }
+
+export async function toggleFollow(targetUserId: string) {
+  const session = await auth();
+  if (!session?.user?.id) return { error: "Belum login" };
+  const userId = session.user.id;
+
+  if (userId === targetUserId) return { error: "Tidak bisa follow diri sendiri" };
+
+  try {
+    const existingFollow = await prisma.follow.findUnique({
+      where: {
+        followerId_followingId: {
+          followerId: userId,
+          followingId: targetUserId
+        }
+      }
+    });
+
+    if (existingFollow) {
+      await prisma.follow.delete({
+        where: { id: existingFollow.id }
+      });
+      revalidatePath(`/profile/${targetUserId}`);
+      return { success: true, followed: false };
+    } else {
+      await prisma.follow.create({
+        data: {
+          followerId: userId,
+          followingId: targetUserId
+        }
+      });
+      
+      // Buat notifikasi follow
+      await prisma.notification.create({
+        data: {
+          type: "FOLLOW",
+          userId: targetUserId,
+          triggerId: userId,
+          content: "mulai mengikuti Anda"
+        }
+      });
+
+      revalidatePath(`/profile/${targetUserId}`);
+      return { success: true, followed: true };
+    }
+  } catch (error: any) {
+    return { error: error.message };
+  }
+}

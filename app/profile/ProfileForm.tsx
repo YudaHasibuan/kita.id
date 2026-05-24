@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { updateProfile, uploadAvatar } from "../actions/profile";
+import { logoutUser } from "../actions/auth";
 
 export default function ProfileForm({ user }: { user: any }) {
   const [loading, setLoading] = useState(false);
@@ -91,6 +92,17 @@ export default function ProfileForm({ user }: { user: any }) {
           {loading ? "Menyimpan Perubahan..." : "Simpan Perubahan Profil"}
         </button>
       </form>
+
+      {/* Tombol Logout */}
+      <div style={{ marginTop: '32px', paddingTop: '24px', borderTop: '1px solid var(--line)' }}>
+        <button 
+          onClick={async () => await logoutUser()}
+          className="auth-button" 
+          style={{ background: '#fee2e2', color: '#dc2626', border: '1px solid #fca5a5' }}
+        >
+          Keluar (Logout)
+        </button>
+      </div>
     </div>
   );
 }

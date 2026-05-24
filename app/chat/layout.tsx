@@ -2,6 +2,8 @@ import { getConversations } from "@/app/actions/chat";
 import ChatSidebar from "./ChatSidebar";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import Link from "next/link";
+import { Home, ArrowLeft } from "lucide-react";
 
 export default async function ChatLayout({
   children,
@@ -16,20 +18,31 @@ export default async function ChatLayout({
   const { conversations, error } = await getConversations();
 
   return (
-    <div className="flex h-[calc(100vh-80px)] mt-20 max-w-6xl mx-auto border border-white/10 rounded-xl overflow-hidden bg-white/5 backdrop-blur-md">
-      {/* Sidebar: List Chat */}
-      <div className="w-1/3 min-w-[300px] border-r border-white/10 flex flex-col bg-black/20">
-        <div className="p-4 border-b border-white/10">
-          <h2 className="text-xl font-bold text-white">Pesan</h2>
-        </div>
-        <div className="flex-1 overflow-y-auto">
-          <ChatSidebar conversations={conversations || []} currentUser={session.user} />
-        </div>
+    <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexDirection: 'column', height: '100vh', padding: '10px 20px' }}>
+      {/* Navigation Top Bar */}
+      <div style={{ display: 'flex', gap: '16px', padding: '10px 0', alignItems: 'center' }}>
+        <Link href="/" style={{ textDecoration: 'none', color: 'var(--muted)', display: 'inline-flex', alignItems: 'center', gap: '6px', fontWeight: 600, transition: 'color 0.2s' }}>
+          <Home size={18} /> Beranda
+        </Link>
+        <span style={{ color: 'var(--line)' }}>|</span>
+        <a href="javascript:history.back()" style={{ textDecoration: 'none', color: 'var(--muted)', display: 'inline-flex', alignItems: 'center', gap: '6px', fontWeight: 600, transition: 'color 0.2s' }}>
+          <ArrowLeft size={18} /> Kembali
+        </a>
       </div>
 
-      {/* Main: Chat Window */}
-      <div className="flex-1 flex flex-col bg-black/40">
-        {children}
+      {/* Main Chat Area */}
+      <div className="chat-layout" style={{ margin: '0', height: 'calc(100vh - 60px)', width: '100%' }}>
+        <div className="chat-sidebar">
+          <div className="chat-sidebar-header">
+            <h2>Pesan</h2>
+          </div>
+          <div className="chat-sidebar-list">
+            <ChatSidebar conversations={conversations || []} currentUser={session.user} />
+          </div>
+        </div>
+        <div className="chat-main">
+          {children}
+        </div>
       </div>
     </div>
   );

@@ -27,7 +27,8 @@
 - [x] **Registrasi & Login Email/Password** — Auth.js Credentials Provider
 - [x] **Login via Google** — Google OAuth 2.0 (gratis, daftar di Google Cloud Console)
 - [x] **Manajemen Sesi** — Proteksi rute dengan `middleware.ts` Next.js
-- [x] **Halaman Profil Dinamis** — Tampilkan data user dari database
+- [x] **Halaman Profil Dinamis** — Tampilkan data user dari database (publik & privat)
+- [x] **Sistem Follow / Unfollow** — Tombol Follow ala Instagram, relasi di database, terhubung dengan akses Chat.
 - [x] **Edit Profil** — Form update nama, handle, bio, dan avatar
 - [x] **Upload Foto Profil** — Integrasi **Cloudinary** (free tier 25GB)
 
@@ -37,10 +38,10 @@
 > 🛠 Tool: **Supabase DB** + **Cloudinary** — GRATIS ✅
 
 - [x] **Buat Postingan (Composer)** — Input teks + upload gambar via **Cloudinary** (bukan AWS S3)
-- [ ] **Interaksi Like** — Sistem toggle like, simpan ke tabel `likes` di Supabase
-- [ ] **Interaksi Komentar** — Nested comment system, simpan ke tabel `comments`
+- [x] **Interaksi Like** — Sistem toggle like, simpan ke tabel `likes` di Supabase
+- [x] **Interaksi Komentar** — Nested comment system, simpan ke tabel `comments`
 - [ ] **Interaksi Repost** — Share/repost postingan ke feed sendiri
-- [ ] **Feed Dinamis** — Hapus mock `data.ts`, ganti dengan Server Action ambil dari Supabase
+- [x] **Feed Dinamis** — Hapus mock `data.ts`, ganti dengan Server Action ambil dari Supabase
 - [ ] **Filter Feed:** Tab Untuk Kamu / Following / Komunitas / Terdekat
 - [ ] **Infinite Scroll** — Load more posts dengan cursor-based pagination
 
@@ -49,17 +50,17 @@
 ## 3. 👥 Sistem Komunitas
 > 🛠 Tool: **Supabase DB** — GRATIS ✅
 
-- [ ] **Eksplorasi Komunitas** — List komunitas dari database + jumlah anggota real-time
-- [ ] **Join / Leave Komunitas** — Tombol join fungsional, simpan ke tabel `community_members`
-- [ ] **Halaman Detail Komunitas** — Feed postingan khusus komunitas
-- [ ] **Buat Komunitas Baru** — Form buat komunitas (nama, deskripsi, public/private)
+- [x] **Eksplorasi Komunitas** — List komunitas dari database + jumlah anggota real-time
+- [x] **Join / Leave Komunitas** — Tombol join fungsional, simpan ke tabel `community_members`
+- [x] **Halaman Detail Komunitas** — Feed postingan khusus komunitas
+- [x] **Buat Komunitas Baru** — Form buat komunitas (nama, deskripsi, public/private)
 
 ---
 
 ## 4. 💬 Chat & Real-Time Messaging
 > 🛠 Tool: **Supabase Realtime** (GRATIS, bawaan Supabase) — ~~Pusher~~ ❌ TIDAK DIPAKAI
 
-- [x] **Inbox Chat** — Daftar percakapan terakhir + badge jumlah pesan belum dibaca
+- [x] **Inbox Chat** — Daftar percakapan di Sidebar Chat + terhubung dinamis dengan Home / Beranda
 - [x] **Direct Message (DM)** — Fitur chat 1 on 1 antar pengguna
 - [x] **Real-Time Pesan** — Menggunakan **Supabase Realtime Channels** (WebSocket bawaan, GRATIS)
 - [x] **Indikator Online** — Tampilkan status "online" pengguna via Supabase Presence
@@ -69,18 +70,18 @@
 ## 5. 📅 Event & Meetup
 > 🛠 Tool: **Supabase DB** — GRATIS ✅
 
-- [ ] **Listing Event** — Tampilkan event dari database (judul, tanggal, lokasi, thumbnail)
-- [ ] **Sistem RSVP** — Tombol konfirmasi kehadiran, simpan ke tabel `event_rsvp`
-- [ ] **Buat Event Baru** — Form tambah event (nama, waktu, lokasi, kapasitas)
+- [x] **Listing Event** — Tampilkan event dari database (judul, tanggal, lokasi, thumbnail)
+- [x] **Sistem RSVP** — Tombol konfirmasi kehadiran, simpan ke tabel `event_rsvp`
+- [x] **Buat Event Baru** — Form tambah event (nama, waktu, lokasi, kapasitas)
 
 ---
 
 ## 6. 📖 Sistem Story (Cerita 24 Jam)
 > 🛠 Tool: **Supabase DB** + **Cloudinary** — GRATIS ✅
 
-- [ ] **Unggah Story** — Upload gambar story via Cloudinary, simpan URL + timestamp ke DB
-- [ ] **Story Viewer** — Modal fullscreen interaktif untuk melihat story
-- [ ] **Auto Expire 24 Jam** — Filter di query Supabase: hanya tampilkan story `created_at` < 24 jam
+- [x] **Unggah Story** — Upload gambar story via Cloudinary, simpan URL + timestamp ke DB
+- [x] **Story Viewer** — Kotak interaktif dan komponen thumbnail di timeline utama (dengan avatar author)
+- [x] **Auto Expire 24 Jam** — Filter di query Supabase: hanya tampilkan story `created_at` < 24 jam
 
 ---
 
@@ -95,9 +96,9 @@
 ## 8. 🔔 Sistem Notifikasi
 > 🛠 Tool: **Supabase DB** + **Supabase Realtime** — GRATIS ✅
 
-- [ ] **Notifikasi Aktivitas** — Simpan notif (like, komentar, follow) ke tabel `notifications`
-- [ ] **Badge Lonceng** — Tampilkan jumlah notifikasi yang belum dibaca di ikon Bell
-- [ ] **Real-time Toast** — Gunakan Supabase Realtime untuk memunculkan pop-up saat ada notif baru
+- [x] **Notifikasi Aktivitas** — Simpan notif (like, komentar, follow) ke tabel `notifications`
+- [x] **Badge Lonceng** — Tampilkan jumlah notifikasi yang belum dibaca di ikon Bell
+- [x] **Real-time Toast** — Gunakan Supabase Realtime untuk memunculkan pop-up saat ada notif baru
 
 ---
 

@@ -3,7 +3,7 @@
 import prisma from "@/lib/db";
 import bcrypt from "bcryptjs";
 import { redirect } from "next/navigation";
-import { signIn } from "@/lib/auth";
+import { signIn, signOut } from "@/lib/auth";
 import { AuthError } from "next-auth";
 
 export async function registerUser(formData: FormData) {
@@ -65,4 +65,8 @@ export async function loginUser(formData: FormData) {
 
 export async function googleSignIn() {
   await signIn("google", { redirectTo: "/" });
+}
+
+export async function logoutUser() {
+  await signOut({ redirectTo: "/login" });
 }
